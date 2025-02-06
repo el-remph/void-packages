@@ -5,3 +5,6 @@
 # - complain
 # - enforce
 APPARMOR=complain
+
+# Set to any string to enable caching
+APPARMOR_CACHE=

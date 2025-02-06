@@ -16,9 +16,10 @@ if [ -n "$APPARMOR" ]; then
 	fi
 
 	[ "$APPARMOR" = "complain" ] && AACOMPLAIN="-C"
+	[ -z "$APPARMOR_CACHE" ] || AACACHE="-W"
 
 	if [ -d /etc/apparmor.d -a -x /usr/bin/apparmor_parser ]; then
-		apparmor_parser -a $AACOMPLAIN $(find /etc/apparmor.d -maxdepth 1 -type f ! -name '*.new-*_*')
+		apparmor_parser -a $AACOMPLAIN $AACACHE $(find /etc/apparmor.d -maxdepth 1 -type f ! -name '*.new-*_*')
 	else
 		printf '! AppArmor installation problem - ensure you have installed apparmor package\n'
 	fi
